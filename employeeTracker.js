@@ -1,9 +1,9 @@
 //const dependencies
-const mysql = require('mysql2');
+const mysql2 = require('mysql2');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 
-var connection = mysql.createConnection({
+var connection = mysql2.createConnection({
     host: "localhost",
     port: 3001,
     user: "root",
@@ -56,9 +56,7 @@ function startAction() {
         else if(answer.action === "Update Employee Role") {
           updateEmpRole();
         }
-        else if (answer.action === "EXIT") {
-          connection.end();
-        }
+        
       });
   }
 // Functions below allow you to view departments, roles, and employees in the console
