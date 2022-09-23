@@ -5,29 +5,29 @@ const consoleTable = require('console.table');
 
 var connection = mysql.createConnection({
     host: "localhost",
-    port: 3001,
+    port: 3306,
     user: "root",
     password: "Zero1234",
-    database: "employee_trackerDB"
+    database: "employeetracker_db"
 })
 //Connects to mysql and db
 connection.connect((err) => {
     if (err) throw err;
-    startAction();
+    start();
   });
 
 //Starts function for application
 
-function startAction() {
+function start() {
     inquirer
       .prompt({
         type: "list",
-        name: "startAction",
+        name: "action",
         message: "What would you like to do?",
         choices: [
-          "View All Departments",
-          "View All Roles",
-          "View All Employees",
+          "View all Departments",
+          "View all Roles",
+          "View all Employees",
           "Add Department",
           "Add Role",
           "Add Employee",
@@ -42,6 +42,7 @@ function startAction() {
           viewRoles();
         }
         else if(answer.action === "View all Employees") {
+          console.log("here");
           viewEmps();
         }
         else if(answer.action === "Add Department") {
@@ -56,7 +57,7 @@ function startAction() {
         else if(answer.action === "Update Employee Role") {
           updateEmpRole();
         }
-        
+        else console.log(answer)
       });
   }
 // Functions below allow you to view departments, roles, and employees in the console
@@ -109,7 +110,7 @@ function addDept() {
             throw err;
           }
           console.table(res);
-          mainMenu();
+          start();
         });
       });
   }
